@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227210455) do
+ActiveRecord::Schema.define(:version => 20130227211806) do
+
+  create_table "boards", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "pin_id"
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pins", :force => true do |t|
+    t.string   "url"
+    t.string   "description"
+    t.string   "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"

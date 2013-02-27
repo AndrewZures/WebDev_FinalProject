@@ -1,9 +1,9 @@
 Pinterest::Application.routes.draw do  
+  
+  resources :pins
+
+
   resources :boards
-
-
-  resources :users
-
 
   resources :users
 end
