@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+
+  before_filter :authorize_user, :except => [:index, :new, :create];
+
+  def authorize_user
+    @user = User.find_by_id(params[:id])
+    if @user.id != session[:id]
+      redirect_to root_url, notice: "Nice Try"
+    end
+  end
+
   def index
     @users = User.all
 
@@ -34,6 +44,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    #authorization makes user call redundant
+    # must have correct @user or else wont
+    # even make it this far
     @user = User.find(params[:id])
   end
 

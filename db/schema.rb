@@ -11,13 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227211806) do
+ActiveRecord::Schema.define(:version => 20130228053950) do
 
   create_table "boards", :force => true do |t|
     t.integer  "user_id"
     t.integer  "pin_id"
     t.string   "name"
     t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "follows", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "like_boards", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "board_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pin_comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "pin_id"
+    t.string   "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -31,15 +53,16 @@ ActiveRecord::Schema.define(:version => 20130227211806) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
+    t.string   "name"
     t.string   "fname"
     t.string   "lname"
     t.string   "email"
     t.string   "location"
     t.string   "about"
     t.string   "image"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "password_digest"
   end
 
 end
