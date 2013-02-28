@@ -10,6 +10,7 @@
 	<nav>
 		<% if session[:id] %>
 			<%= link_to 'MyProfile', user_url(session[:id]) %> 
+			<%= link_to 'MyBoards', boards_url %>
 			<%= link_to 'Sign Out', sign_out_url %>
 		<% else %>
 			<%= link_to 'Sign In', sign_in_url %>
