@@ -2,7 +2,8 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    @boards = Board.where(:user_id => session[:id])
+    @user = User.find_by_id(session[:id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,8 +14,8 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @board = Board.find(params[:id])
-
+    @board = Board.find_by_id(params[:id])
+    @user = User.find_by_id(session[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @board }
@@ -25,6 +26,8 @@ class BoardsController < ApplicationController
   # GET /boards/new.json
   def new
     @board = Board.new
+    @user = User.find_by_id(session[:id])
+    @board.user_id = @user.id
 
     respond_to do |format|
       format.html # new.html.erb

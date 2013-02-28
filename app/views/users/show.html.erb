@@ -1,17 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>name:</b>
+  <%= image_tag(@user.image, :height => 120, :width => 120) %>
+</p>
+
+<p>
+  <b>username:</b>
   <%= @user.name %>
 </p>
 
 <p>
-  <b>Fname:</b>
+  <b>first name:</b>
   <%= @user.fname %>
 </p>
 
 <p>
-  <b>Lname:</b>
+  <b>last name:</b>
   <%= @user.lname %>
 </p>
 
@@ -31,10 +35,9 @@
 </p>
 
 <p>
-  <b>Image:</b>
-  <%= @user.image %>
-</p>
-
+  <%= link_to "Show Boards", boards_url %><br><br>
+  <%= link_to "Create Board", new_board_url %>
+</p>  
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -9,7 +9,7 @@
 <body>
 	<nav>
 		<% if session[:id] %>
-			You Are Signed In  
+			<%= link_to 'MyProfile', user_url(session[:id]) %> 
 			<%= link_to 'Sign Out', sign_out_url %>
 		<% else %>
 			<%= link_to 'Sign In', sign_in_url %>

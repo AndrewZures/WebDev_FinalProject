@@ -1,9 +1,9 @@
-<h1>Listing boards</h1>
+<h1><%= @user.name %>'s Boards</h1>
 
 <table>
   <tr>
-    <th>User</th>
-    <th>Pin</th>
+    <!--<th>User</th>
+    <th>Pin</th>-->
     <th>Name</th>
     <th>Category</th>
     <th></th>
@@ -13,8 +13,8 @@
 
 <% @boards.each do |board| %>
   <tr>
-    <td><%= board.user_id %></td>
-    <td><%= board.pin_id %></td>
+    <!--<td><%#= board.user_id %></td>
+    <td><%#= board.pin_id %></td>-->
     <td><%= board.name %></td>
     <td><%= board.category %></td>
     <td><%= link_to 'Show', board %></td>

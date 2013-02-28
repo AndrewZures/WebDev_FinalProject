@@ -1,0 +1,21 @@
+<h1>Listing board_pins</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @board_pins.each do |board_pin| %>
+  <tr>
+    <td><%= link_to 'Show', board_pin %></td>
+    <td><%= link_to 'Edit', edit_board_pin_path(board_pin) %></td>
+    <td><%= link_to 'Destroy', board_pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Board pin', new_board_pin_path %>
