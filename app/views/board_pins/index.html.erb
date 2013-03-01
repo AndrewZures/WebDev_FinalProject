@@ -2,6 +2,9 @@
 
 <table>
   <tr>
+    <th>Pin</th>
+    <th>Board</th>
+    <th>Description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +12,9 @@
 
 <% @board_pins.each do |board_pin| %>
   <tr>
+    <td><%= board_pin.pin_id %></td>
+    <td><%= board_pin.board_id %></td>
+    <td><%= board_pin.description %></td>
     <td><%= link_to 'Show', board_pin %></td>
     <td><%= link_to 'Edit', edit_board_pin_path(board_pin) %></td>
     <td><%= link_to 'Destroy', board_pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>

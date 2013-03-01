@@ -18,7 +18,7 @@ class BoardPinsControllerTest < ActionController::TestCase
 
   test "should create board_pin" do
     assert_difference('BoardPin.count') do
-      post :create, board_pin: {  }
+      post :create, board_pin: { board_id: @board_pin.board_id, description: @board_pin.description, pin_id: @board_pin.pin_id }
     end
 
     assert_redirected_to board_pin_path(assigns(:board_pin))
@@ -35,7 +35,7 @@ class BoardPinsControllerTest < ActionController::TestCase
   end
 
   test "should update board_pin" do
-    put :update, id: @board_pin, board_pin: {  }
+    put :update, id: @board_pin, board_pin: { board_id: @board_pin.board_id, description: @board_pin.description, pin_id: @board_pin.pin_id }
     assert_redirected_to board_pin_path(assigns(:board_pin))
   end
 

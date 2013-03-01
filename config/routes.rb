@@ -1,5 +1,8 @@
 Pinterest::Application.routes.draw do  
 
+  resources :board_pins
+
+
   root to: "users#index"
 
   #session routes	  

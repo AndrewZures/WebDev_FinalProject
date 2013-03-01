@@ -12,7 +12,7 @@
 
 <% @pins.each do |pin| %>
   <tr>
-    <td><%= pin.url %></td>
+    <td><%= image_tag(pin.url, height: 200, width: 200) %></td>
     <td><%= pin.description %></td>
     <td><%= pin.user_id %></td>
     <td><%= link_to 'Show', pin %></td>

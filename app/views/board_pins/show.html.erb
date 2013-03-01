@@ -1,5 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Pin:</b>
+  <%= @board_pin.pin_id %>
+</p>
+
+<p>
+  <b>Board:</b>
+  <%= @board_pin.board_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @board_pin.description %>
+</p>
+
 
 <%= link_to 'Edit', edit_board_pin_path(@board_pin) %> |
 <%= link_to 'Back', board_pins_path %>

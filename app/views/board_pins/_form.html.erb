@@ -11,6 +11,18 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :pin_id %><br />
+    <%= f.number_field :pin_id %>
+  </div>
+  <div class="field">
+    <%= f.label :board_id %><br />
+    <%= f.number_field :board_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
