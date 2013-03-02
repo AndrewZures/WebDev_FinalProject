@@ -3,6 +3,7 @@ class BoardPin < ActiveRecord::Base
 
   belongs_to :board
   belongs_to :pin
+
   validates_presence_of :board_id, :pin_id
 
 end

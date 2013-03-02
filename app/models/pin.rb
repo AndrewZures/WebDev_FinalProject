@@ -5,5 +5,5 @@ class Pin < ActiveRecord::Base
 
   belongs_to :users
   has_many :board_pins
-  has_many :boards, :through => :board_pin
+  has_many :boards, :through => :board_pins
 end

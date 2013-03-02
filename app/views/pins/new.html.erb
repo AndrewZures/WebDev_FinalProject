@@ -4,7 +4,7 @@
 
   <div class="field">
     <%= label_tag :board_id %><br />
-    <%= collection_select :post, :board_id, Board.all, :id, :name %>
+    <%= collection_select :post, :board_id, Board.where(:user_id => session[:id]), :id, :name, :selected => params[:board_id].to_s %>
   </div>
 
   <div class="field">

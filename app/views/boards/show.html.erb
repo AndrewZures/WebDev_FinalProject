@@ -14,7 +14,10 @@
 
 <p>
   <b>Name:</b>
-  <%= @board.name %>
+  <%= @board.name %><br>
+  <%= link_to "Add Pin", new_pin_url(:board_id => @board.id) %><br>
+  <%= link_to 'Edit Here', edit_board_path(@board) %> |
+  <%= link_to 'Back', boards_path %>
 </p>
 
 <p>
@@ -22,15 +25,17 @@
   <%= @board.category %>
 </p>
 
-
-<ul>
-	<%= @board.board_pins.each do |bp| %>
-	<li> <%= bp.pin.url %> </li>
+  <% count = 0 %>
+	<% @board.pins.each do |bp| %>
+    <% if count < 4 %>
+      <% count += 1 %>
+    <%else %>
+      <% count = 0 %>
+      <br>
+    <% end %>
+      <%= link_to image_tag(bp.url, :height => 200, :width => 200), board_pin_url(@board.board_pins.find_by_pin_id(bp.id).id) %> </li>
 	<% end %>
 </ul>
 
 
-<%= link_to "Add Pin", new_board_pin_url %><br>
 
-<%= link_to 'Edit', edit_board_path(@board) %> |
-<%= link_to 'Back', boards_path %>

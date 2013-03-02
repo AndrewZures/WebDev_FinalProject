@@ -19,8 +19,13 @@
     <td><%= board.category %></td>
     <td><%= link_to 'Show', board %></td>
     <td><%= link_to 'Edit', edit_board_path(board) %></td>
-    <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+  <% board.pins.each do |pin| %>
+  <td>
+    <%= image_tag(pin.url, :heigth => 60, :width => 60) %>
+  </td>
+  <% end %>
+</tr>
 <% end %>
 </table>
 

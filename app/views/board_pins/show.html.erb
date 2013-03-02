@@ -2,12 +2,12 @@
 
 <p>
   <b>Pin:</b>
-  <%= @board_pin.pin_id %>
+  <%= @board_pin.pin.id %>
 </p>
 
 <p>
   <b>Board:</b>
-  <%= @board_pin.board_id %>
+  <%= @board_pin.board.name %>
 </p>
 
 <p>
@@ -15,6 +15,9 @@
   <%= @board_pin.description %>
 </p>
 
+<p>
+	<%= image_tag(@board_pin.pin.url) %>
+</p>
 
 <%= link_to 'Edit', edit_board_pin_path(@board_pin) %> |
 <%= link_to 'Back', board_pins_path %>

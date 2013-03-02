@@ -15,6 +15,7 @@
   </tr>
 
 <% @users.each do |user| %>
+ <% if session[:id] != user.id %>  
   <tr>
     <td><%= user.name %></td>
     <td><%= user.fname %></td>
@@ -23,12 +24,13 @@
     <td><%= user.location %></td>
     <td><%= user.about %></td>
     <td><%= link_to image_tag(user.image, :height => 50, :width => 50), user %></td>
-    <td><%= link_to 'Show', user %></td>
-    <% if session[:id] != nil && session[:id] == user.id %>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+   
+        <% if Friend.where(:user_id => session[:id], :friend_id => user.id).count > 0 %>
+        <% else %>
+            <td><%= link_to "Friend!", create_friend_url(:id => user.id), method: :post %></td>
+        <% end %> 
   </tr>
+  <% end %>
 <% end %>
 </table>
 
