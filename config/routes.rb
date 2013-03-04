@@ -1,5 +1,21 @@
 Pinterest::Application.routes.draw do  
 
+  post "pin_comments" => "pin_comments#create"
+  get "pin_comment/:id/edit" => "pin_comments#edit", as: :edit_pin_comment
+  get "pin_comments/destroy"
+
+  get "following/create"
+
+  get "following/destroy"
+
+  get "followers/create"
+
+  get "followers/destroy"
+
+  get "follows/create"
+
+  get "follows/destroy"
+
   get "friends/new"
   post "friends/:id" => "friends#create", as: :create_friend
   get "friends/edit"

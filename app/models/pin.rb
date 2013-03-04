@@ -4,6 +4,8 @@ class Pin < ActiveRecord::Base
   validates_presence_of :url, :user_id
 
   belongs_to :users
+
+  has_many :pin_comments
   has_many :board_pins
   has_many :boards, :through => :board_pins
 end

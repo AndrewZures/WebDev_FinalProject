@@ -41,8 +41,8 @@
   <p>
     <h3>Show</h3>
     <%= link_to "Show Pins You've Added", pins_url %><br>
-    <%= link_to "Show Boards", boards_url %><br>
-    <%= link_to "Show Friends", friends_index_url %>
+    <%= link_to "Show Boards (#{@user.boards.count})", boards_url %><br>
+    <%= link_to "Show Friends (#{@user.friends.count})", friends_index_url %>
 
     <h3>Create</h3>
     <%= link_to "Create Pin", new_pin_url %><br>

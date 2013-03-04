@@ -19,5 +19,26 @@
 	<%= image_tag(@board_pin.pin.url) %>
 </p>
 
+<p>
+	<b>Comments</b><br>
+	<% @board_pin.pin.pin_comments.each_with_index do |comment, ind| %>
+	<b><%= ind+1 %> </b>
+	<%= comment.comment %><b> By </b>
+	<%= comment.user.name %><b> On </b>
+	<%= comment.created_at.strftime("%A, %B %eth, %Y") %> | 
+	<% if comment.user_id == session[:id] %>
+		<%= link_to "Edit", edit_pin_comment_url(comment.id) %>
+		<% end %><br>
+	<% end %>
+
+	<%= form_tag "/pin_comments", method: :post %>
+	<b>Write A Comment</b><br>
+	<%= text_field_tag :comment_text %>
+	<%= hidden_field_tag :pin_id, @board_pin.pin.id %>
+	<%= submit_tag "Share Comment" %>
+
+</p>
+
+
 <%= link_to 'Edit', edit_board_pin_path(@board_pin) %> |
 <%= link_to 'Back', board_pins_path %>

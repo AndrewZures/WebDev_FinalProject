@@ -15,7 +15,7 @@
 <p>
   <b>Name:</b>
   <%= @board.name %><br>
-  <%= link_to "Add Pin", new_pin_url(:board_id => @board.id) %><br>
+  <%= link_to "Add Pin", board_pins_url %><br>
   <%= link_to 'Edit Here', edit_board_path(@board) %> |
   <%= link_to 'Back', boards_path %>
 </p>
