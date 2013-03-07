@@ -3,6 +3,7 @@ class BoardPinsController < ApplicationController
   # GET /board_pins.json
   def index
     @board_pins = BoardPin.all
+    @current_board = Board.find_by_id(params[:board_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,11 +41,17 @@ class BoardPinsController < ApplicationController
   # POST /board_pins
   # POST /board_pins.json
   def create
-    @board_pin = BoardPin.new(params[:board_pin])
+    @board_pin = BoardPin.new
+    if params[:board_id]
+      @board_pin.board_id = params[:board_id]
+    else
+      @board_pin.board_id = params[:post][:board_id]
+    end
+    @board_pin.pin_id = params[:pin_id]
 
     respond_to do |format|
       if @board_pin.save
-        format.html { redirect_to @board_pin, notice: 'Board pin was successfully created.' }
+        format.html { redirect_to board_url(@board_pin.board), notice: 'Board pin was successfully created.' }
         format.json { render json: @board_pin, status: :created, location: @board_pin }
       else
         format.html { render action: "new" }
@@ -76,7 +83,7 @@ class BoardPinsController < ApplicationController
     @board_pin.destroy
 
     respond_to do |format|
-      format.html { redirect_to board_pins_url }
+      format.html { redirect_to board_url(params[:board_id]) }
       format.json { head :no_content }
     end
   end

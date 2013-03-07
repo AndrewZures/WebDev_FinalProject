@@ -13,12 +13,18 @@
 <% @board_pins.each do |board_pin| %>
   <tr>
     <td><%= board_pin.pin_id %></td>
-    <td><%= board_pin.board_id %></td>
+    <td><%= board_pin.board.name %></td>
     <td><%= board_pin.description %></td>
     <td><%= image_tag(board_pin.pin.url, :height => 150, :width => 150) %> <td>
-    <td><%= link_to 'Show', board_pin %></td>
-    <td><%= link_to 'Edit', edit_board_pin_path(board_pin) %></td>
-    <td><%= link_to 'Destroy', board_pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if params[:board_id]   && session[:id] %>
+      <td><%= link_to "Add to #{@current_board.name}", board_pins_url(:board_id => params[:board_id], :pin_id => board_pin.pin_id), method: :post%><td>
+      <% end %>
+
+    <% if session[:id] != board_pin.board.user.id %>
+      <td><%= link_to 'Show', board_pin %></td>
+      <td><%= link_to 'Edit', edit_board_pin_path(board_pin) %></td>
+      <td><%= link_to 'Destroy', board_pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
   </tr>
 <% end %>
 </table>

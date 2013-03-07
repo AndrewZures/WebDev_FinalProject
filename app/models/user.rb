@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :password
 
   has_many :friends
-  has_many :friendships
   has_many :boards
   has_many :pins
   

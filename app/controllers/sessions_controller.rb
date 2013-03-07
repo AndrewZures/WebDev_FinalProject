@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
 				session[:id] = user.id
 			end
 		end
-		redirect_to root_url
+		redirect_to user_url(session[:id])
 	end
 end

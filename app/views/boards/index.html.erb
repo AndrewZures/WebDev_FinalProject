@@ -15,7 +15,7 @@
   <tr>
     <!--<td><%#= board.user_id %></td>
     <td><%#= board.pin_id %></td>-->
-    <td><%= board.name %></td>
+    <td><%= link_to board.name, board %></td>
     <td><%= board.category %></td>
     <td><%= link_to 'Show', board %></td>
     <td><%= link_to 'Edit', edit_board_path(board) %></td>

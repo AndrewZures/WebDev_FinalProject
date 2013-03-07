@@ -7,7 +7,16 @@
 
 <p>
   <b>Board:</b>
-  <%= @board_pin.board.name %>
+  <%= link_to @board_pin.board.name, @board_pin.board %>
+  <% if @board_pin.board.user_id == session[:id] %>
+  <%= link_to "Delete Pin", board_pin_url(:id => @board_pin.id, :board_id => @board_pin.board.id), method: :delete, :confirm => "Do You Really Want To Delete This Pin From #{@board_pin.board.name}" %>
+  <% else %>
+  	<%= form_tag '/board_pins', method: :post %>
+  	Add To: 
+  	<%= hidden_field_tag :pin_id, @board_pin.pin %>
+  	<%= collection_select :post, :board_id, Board.where(:user_id => session[:id]), :id, :name %>
+  	<%= submit_tag "Add Pin" %>
+  <% end %>
 </p>
 
 <p>

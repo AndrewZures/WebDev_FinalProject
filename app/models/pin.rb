@@ -3,7 +3,7 @@ class Pin < ActiveRecord::Base
 
   validates_presence_of :url, :user_id
 
-  belongs_to :users
+  belongs_to :user
 
   has_many :pin_comments
   has_many :board_pins
