@@ -91,8 +91,8 @@ class BoardsController < ApplicationController
     @board.save
     
     20.times do 
-      height = rand(200..400)
-      width = rand(200..400)
+      height = rand(200..400).to_i
+      width = rand(200..400).to_i
       @board.pins.create :user_id => session[:id], :url => "http://placekitten.com/g/#{height}/#{width}"
     end
     redirect_to user_url(session[:id])
@@ -105,8 +105,8 @@ class BoardsController < ApplicationController
     @board.save
     
     20.times do 
-      height = rand(200..400)
-      width = rand(200..400)
+      height = rand(200..400).to_i
+      width = rand(200..400).to_i
       @board.pins.create :user_id => session[:id], :url => "http://placecage.com/g/#{height}/#{width}"
     end
     redirect_to user_url(session[:id])
