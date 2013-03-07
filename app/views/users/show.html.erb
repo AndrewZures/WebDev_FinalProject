@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <body>
-
+<br><br>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
@@ -17,6 +17,12 @@
                       <li><%= link_to "Pin", new_pin_url %></li>
                       <li><%= link_to "Board", new_board_url %></li>
                       <li><%= link_to "Find Friends", find_friends_url %></li>
+                      <li><%= link_to "Kitten Board", kittens_url %></li>
+                      <li><%= link_to "Nick Cage Board", cage_url %></li>
+              <li class="nav-header">Sort</li><ul class="nav nav-list">
+                      <li><%= link_to "Random", user_url(:sort => 'random') %></li>
+                      <li><%= link_to "Newest", user_url(:sort => 'newest') %></li>
+                      <li><%= link_to "Oldest", user_url(:sort => 'oldest') %></li>
 
             </ul>
           </div><!--/.well -->
@@ -25,13 +31,11 @@
 <div class="span9">
 
             
-            <% @user.boards.each do |board| %>
-            <% board.board_pins.each do |pin| %>
+            <% @user_board_pins.each do |pin| %>
               <div class="span3">
               <%= link_to image_tag(pin.pin.url, :size => "400x400"), board_pin_url(pin.id) %><br>
               <%= pin.pin.description %><br>
               repinned from <%= pin.pin.user.name%>
               </div><!--/span-->
-              <% end %>
             <% end %>
         </div>

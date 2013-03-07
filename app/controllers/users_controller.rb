@@ -24,6 +24,15 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by_id(session[:id])
+      if params[:sort] == 'random'
+        @user_board_pins = @user.board_pins.shuffle
+      elsif params[:sort] == "newest"
+        @user_board_pins = @user.board_pins.order('created_at desc')
+      elsif params[:sort] == "oldest"
+        @user_board_pins = @user.board_pins.order('created_at asc')
+      else
+        @user_board_pins = @user.board_pins
+      end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,6 +66,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else

@@ -80,6 +80,10 @@ class BoardPinsController < ApplicationController
   # DELETE /board_pins/1.json
   def destroy
     @board_pin = BoardPin.find(params[:id])
+    @pins = BoardPin.where(:pin_id => @board_pin.pin_id)
+    if @pins.count <= 1
+      @pins.destroy
+    end
     @board_pin.destroy
 
     respond_to do |format|

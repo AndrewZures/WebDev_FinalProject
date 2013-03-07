@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   before_save :check_image
 
+  has_many :board_pins, :through => :boards
   has_many :friends
   has_many :boards
   has_many :pins

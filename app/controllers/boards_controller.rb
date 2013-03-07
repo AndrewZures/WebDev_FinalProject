@@ -84,4 +84,32 @@ class BoardsController < ApplicationController
     end
   end
 
+  def create_kitten_board
+    @board = Board.new
+    @board.name = "Kittens"
+    @board.user_id = session[:id]
+    @board.save
+    
+    20.times do 
+      height = rand(200..400)
+      width = rand(200..400)
+      @board.pins.create :user_id => session[:id], :url => "http://placekitten.com/g/#{height}/#{width}"
+    end
+    redirect_to user_url(session[:id])
+  end
+
+    def create_cage_board
+    @board = Board.new
+    @board.name = "Nick Cage!"
+    @board.user_id = session[:id]
+    @board.save
+    
+    20.times do 
+      height = rand(200..400)
+      width = rand(200..400)
+      @board.pins.create :user_id => session[:id], :url => "http://placecage.com/g/#{height}/#{width}"
+    end
+    redirect_to user_url(session[:id])
+  end
+
 end

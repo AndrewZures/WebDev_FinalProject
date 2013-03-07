@@ -17,7 +17,8 @@
   <%= @board.name %><br>
   <%= link_to "Add Pin", board_pins_url(:board_id => @board.id) %><br>
   <%= link_to "Upload/Link Your Own Pin", new_pin_url(:board_id => @board.id) %> <br>
-  <%= link_to 'Edit Here', edit_board_path(@board) %> |
+  <%= button_to 'Edit', edit_board_path(@board) %>
+  <%= button_to 'Destroy', @board, method: :delete, :confirm => "Are You Sure?" %>
   <%= link_to 'Back', boards_path %>
 </p>
 
