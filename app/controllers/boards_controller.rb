@@ -76,6 +76,10 @@ class BoardsController < ApplicationController
   # DELETE /boards/1.json
   def destroy
     @board = Board.find(params[:id])
+    
+    @board.board_pins.each do |bpin|
+      bpin.destroy
+    end
     @board.destroy
 
     respond_to do |format|

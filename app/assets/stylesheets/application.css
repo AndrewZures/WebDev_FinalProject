@@ -294,10 +294,12 @@ a:focus {
 
 .span12 {
   width: 940px;
+  background-color: #eeeeee;
 }
 
 .span11 {
   width: 860px;
+  background-color: #eeeeee;
 }
 
 .span10 {
