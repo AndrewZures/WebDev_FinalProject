@@ -7,7 +7,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><h3><%= @user.name %></h3></li>
-              <li class="active"><img src=<%=@user.image%>, height="300", width = "300") %></li>
+              <li class="active"><img src="/assets/default-user-image.jpg", alt="uh oh", height="300", width = "300") %></li>
                   <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
               <li class="nav-header">Show</li><ul class="nav nav-list">
                   <li><%= link_to "Boards (#{@user.boards.count})", boards_url %></li>

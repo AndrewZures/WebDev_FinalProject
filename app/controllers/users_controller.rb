@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
-  before_filter :authorize_user, :except => [:index, :new, :create];
+  before_filter :authorize_user, :except => [:index, :new, :create, :introduction];
 
   def authorize_user
     @user = User.find_by_id(params[:id])
@@ -103,4 +103,11 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def introduction
+  if session[:id]
+    redirect_to user_url(session[:id])
+  end
+end
+
 end

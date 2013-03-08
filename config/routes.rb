@@ -1,4 +1,5 @@
 Pinterest::Application.routes.draw do  
+  get 'introduction' => "users#introduction", as: :introduction
 
   post "pin_comments" => "pin_comments#create"
   get "pin_comment/:id/edit" => "pin_comments#edit", as: :edit_pin_comment
@@ -33,7 +34,7 @@ Pinterest::Application.routes.draw do
   resources :board_pins
 
 
-  root to: "users#index"
+  root to: "users#introduction"
 
   #session routes	  
   get "sessions/new" => 'sessions#new', as: :sign_in
