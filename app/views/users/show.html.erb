@@ -1,4 +1,20 @@
 <p id="notice"><%= notice %></p>
+<script>
+  $(function(){
+    $("#sortable").sortable();
+    $("#sortable").disableSelection();
+    $( "#resizable" ).resizable({
+      animate: true
+    });
+  });
+</script>
+ <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0;}
+  #sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 200px; height: 200px; text-align: center; }
+  #resizable { width: 150px; height: 150px; padding: 0.5em; }
+  #resizable h3 { text-align: center; margin: 0; }
+  .ui-resizable-helper { border: 1px dotted gray; }
+  </style>
 <body>
 <br><br>
     <div class="container-fluid">
@@ -7,7 +23,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><h3><%= @user.name %></h3></li>
-              <li class="active"><img src="/assets/default-user-image.jpg", alt="uh oh", height="300", width = "300") %></li>
+              <li class="active"><img src="<%=@user.image%>", alt="uh oh", height="300", width = "300") %></li>
                   <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
               <li class="nav-header">Show</li><ul class="nav nav-list">
                   <li><%= link_to "Boards (#{@user.boards.count})", boards_url %></li>
@@ -28,14 +44,14 @@
           </div><!--/.well -->
         </div><!--/span-->
 
-<div class="span9">
+<div class="span10">
+  <ul id="sortable">
 
             
             <% @user_board_pins.each do |pin| %>
-              <div class="span3">
+            <li id="resizable">
               <%= link_to image_tag(pin.pin.url, :size => "400x400"), board_pin_url(pin.id) %><br>
               <%= pin.pin.description %><br>
-              repinned from <%= pin.pin.user.name%>
-              </div><!--/span-->
+            </li>
             <% end %>
         </div>

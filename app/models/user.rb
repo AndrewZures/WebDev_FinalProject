@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   def check_image
   	if self.image.blank?
-  		self.image = "/assets/default-user-image.jpg"
+  		self.image = "/assets/dog.jpg"
   	end
   end
   

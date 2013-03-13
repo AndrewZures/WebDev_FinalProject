@@ -8,6 +8,14 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
+ /*
+ *= require font-awesome
+ */
+
+ li#nav-home-icon {
+  font-size: 40;
+ }
+
 .clearfix {
   *zoom: 1;
 }
@@ -314,6 +322,7 @@ a:focus {
 
 .span8 {
   width: 620px;
+  background-color: #eeeeee;
 }
 
 .span7 {
@@ -2962,7 +2971,7 @@ table th[class*="span"],
 }
 
 .dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:focus, 
 .dropdown-submenu:hover > a,
 .dropdown-submenu:focus > a {
   color: #ffffff;
