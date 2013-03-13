@@ -40,8 +40,12 @@
     <%= f.text_field :image %>
   </div><br />
   <div class="field">
+    <% if @user.password_digest.blank? %>
     <%= f.label :password %>
     <%= f.text_field :password %>
+    <% else %>
+    <%= f.hidden_field :password %>
+    <% end %>
   </div><br />
   <div class="actions">
     <%= f.submit "Sign Up"%>

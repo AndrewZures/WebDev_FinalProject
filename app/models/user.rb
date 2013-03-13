@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates_presence_of :name, :password
+  validates_presence_of :name
   validates_uniqueness_of :name
 
   before_save :check_image
@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :friends
   has_many :boards
   has_many :pins
+
+
+  validates :password, :presence => true, :if => :password_digest_changed?
 
   def check_image
   	if self.image.blank?

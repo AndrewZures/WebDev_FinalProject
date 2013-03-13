@@ -16,7 +16,6 @@
   .ui-resizable-helper { border: 1px dotted gray; }
   </style>
 <body>
-<br><br>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
@@ -32,13 +31,15 @@
               <li class="nav-header">Create</li><ul class="nav nav-list">
                       <li><%= link_to "Pin", new_pin_url %></li>
                       <li><%= link_to "Board", new_board_url %></li>
-                      <li><%= link_to "Find Friends", find_friends_url %></li>
-                      <li><%= link_to "Kitten Board", kittens_url %></li>
-                      <li><%= link_to "Nick Cage Board", cage_url %></li>
+                      <li><%= link_to "Find Friends", find_friends_url %></li></ul>
               <li class="nav-header">Sort</li><ul class="nav nav-list">
                       <li><%= link_to "Random", user_url(:sort => 'random') %></li>
                       <li><%= link_to "Newest", user_url(:sort => 'newest') %></li>
                       <li><%= link_to "Oldest", user_url(:sort => 'oldest') %></li>
+                    </ul>
+               <li class="nav-header">Pre-Build Boards</li><ul class="nav nav-list">
+                                        <li><%= button_to "Kitten Board", kittens_url, method: :post %></li>
+                      <li><%= button_to "Nick Cage Board", cage_url, method: :post %></li>
 
             </ul>
           </div><!--/.well -->

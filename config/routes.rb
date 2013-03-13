@@ -5,8 +5,8 @@ Pinterest::Application.routes.draw do
   get "pin_comment/:id/edit" => "pin_comments#edit", as: :edit_pin_comment
   get "pin_comments/destroy"
 
-  get "createkittenboard" => "boards#create_kitten_board", as: :kittens
-  get "createcageboard" => "boards#create_cage_board", as: :cage
+  post "createkittenboard" => "boards#create_kitten_board", as: :kittens
+  post "createcageboard" => "boards#create_cage_board", as: :cage
 
 
   get "following/create"
