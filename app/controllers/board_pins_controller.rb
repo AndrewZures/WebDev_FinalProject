@@ -51,7 +51,7 @@ class BoardPinsController < ApplicationController
 
     respond_to do |format|
       if @board_pin.save
-        format.html { redirect_to board_url(@board_pin.board), notice: 'Board pin was successfully created.' }
+        format.html { redirect_to board_pin_url(@board_pin.id), notice: 'Board pin was successfully created.' }
         format.json { render json: @board_pin, status: :created, location: @board_pin }
       else
         format.html { render action: "new" }

@@ -11,7 +11,7 @@
   	<!--Form for adding pin to session user board-->
   	<%= form_tag '/board_pins', method: :post  do %>
   	Add To: 
-  	<%= hidden_field_tag :pin_id, @board_pin.pin %>
+  	<%= hidden_field_tag :pin_id, @board_pin.pin.id %>
   	<%= collection_select :post, :board_id, Board.where(:user_id => session[:id]), :id, :name %>
   	<%= submit_tag "Add Pin" %>
     <% end %>
