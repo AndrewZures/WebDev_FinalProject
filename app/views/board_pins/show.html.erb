@@ -24,9 +24,9 @@
 
   <!--favorites button-->
   <% if @board_pin.favorites.find_by_user_id_and_board_pin_id(session[:id], @board_pin.id)%>
-    <%= button_to "Remove From Favorites", favorites_url(:id => @board_pin.pin.id), method: :delete %>
+    <%= button_to "Remove From Favorites", favorites_url(:id => @board_pin.id), method: :delete %>
   <% else %>
-    <%= button_to "Add To Favorites", favorites_url(:id => @board_pin.pin.id), method: :post %>
+    <%= button_to "Add To Favorites", favorites_url(:id => @board_pin.id), method: :post %>
     <%end%>
 </p>
 
