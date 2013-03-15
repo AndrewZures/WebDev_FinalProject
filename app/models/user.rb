@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :friends
   has_many :boards
   has_many :pins
+  has_many :favorites
 
 
   validates :password, :presence => true, :if => :password_digest_changed?

@@ -1,5 +1,22 @@
 Pinterest::Application.routes.draw do  
+    
+  #root and introduction, main entry points for new users
+  root to: "users#introduction"
   get 'introduction' => "users#introduction", as: :introduction
+
+
+  #favorites routes - need only create, destroy, and index
+  #RESTful routes employed for favorites
+  get "favorites/" => 'favorites#index', as: :favorites
+  post "favorites/" => 'favorites#create'
+  delete "favorites/" => 'favorites#destroy'
+
+  #session routes
+  get "sessions/new" => 'sessions#new', as: :sign_in
+  delete "sessions/destroy" => 'sessions#destroy', as: :sign_out
+  post "sessions/create"
+
+  
 
   post "pin_comments" => "pin_comments#create"
   get "pin_comment/:id/edit" => "pin_comments#edit", as: :edit_pin_comment
@@ -25,7 +42,7 @@ Pinterest::Application.routes.draw do
   post "friends/:id" => "friends#create", as: :create_friend
   get "friends/edit"
   get "friends/update"
-  get "friends/destroy"
+  delete  "friends/:id" => "friends#destroy", as: :unfriend
   get "friends/index"
 
   get "find_friends" => "friends#find_friends", as: :find_friends
@@ -34,12 +51,9 @@ Pinterest::Application.routes.draw do
   resources :board_pins
 
 
-  root to: "users#introduction"
+  
 
-  #session routes	  
-  get "sessions/new" => 'sessions#new', as: :sign_in
-  get "sessions/destroy" => 'sessions#destroy', as: :sign_out
-  post "sessions/create"
+
 
 
 

@@ -1,0 +1,6 @@
+<h1><%= @user.name%>'s Favorites</h1>
+
+
+<% @user.favorites.each do |favorite| %>
+	<a href='<%=board_pin_url(:id => favorite.board_pin.id)%>'><img src='<%=favorite.board_pin.pin.url%>' height='200' width='200'></a>
+<% end %>

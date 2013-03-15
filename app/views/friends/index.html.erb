@@ -2,7 +2,14 @@
 
 <ul>
 <% @friends.each do |friend| %>
-<li><%= friend.friend_id %> </li>
+<li><img src="<%= friend.friendship.image %>" height"75" width="75">
+	<%= link_to friend.friendship.name, user_url(friend.friendship.id) %>,
+	<ul>
+	<% friend.friendship.boards.limit(3).each do |board|%>
+			<li><%= link_to board.name, board_url(board.id) %></li>
+	<% end %>
+</ul>
+</li>
 <% end %>
 </ul>
 

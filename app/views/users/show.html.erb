@@ -21,25 +21,56 @@
         <div class="span2">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
+
+              <!--name and picture-->
               <li class="nav-header"><h3><%= @user.name %></h3></li>
               <li class="active"><img src="<%=@user.image%>", alt="uh oh", height="300", width = "300") %></li>
-                  <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
+
+                <!--Follower Button Mechanics-->
+                <li >
+                  <br>  
+                <% if @viewer.nil? %>
+                    <%= link_to 'Edit Profile', edit_user_path(@user) %>
+                <% else %>
+                    <h4><% if @viewer.friends.find_by_friend_id(@user.id) %>
+                        <%= link_to "Friended", unfriend_url(:id => @user.id), method: :delete, :remote => true, :id => 'friend' %>
+                        <% else %>
+                        <%= link_to "Friend User!", create_friend_url(:id => @user.id), method: :post, :remote => true, :id => 'friend' %>
+                        <% end %>
+                    </h4>
+                <%  end %></li>
+
+
+               <!--Show Menu-->
               <li class="nav-header">Show</li><ul class="nav nav-list">
-                  <li><%= link_to "Boards (#{@user.boards.count})", boards_url %></li>
-                  <li><%= link_to "Friends (#{@user.friends.count})", friends_index_url %></li>
-                  <li><%= link_to "Pins Added", pins_url %></li></ul>
-              <li class="nav-header">Create</li><ul class="nav nav-list">
-                      <li><%= link_to "Pin", new_pin_url %></li>
-                      <li><%= link_to "Board", new_board_url %></li>
-                      <li><%= link_to "Find Friends", find_friends_url %></li></ul>
+                  <li><%= link_to "Boards (#{@user.boards.count})", boards_url(:id => @user.id) %></li>
+                  <li><%= link_to "Friends (#{@user.friends.count})", friends_index_url(:id => @user.id) %></li>
+                  <li><%= link_to "Pins Added", pins_url(:id => @user.id) %></li>
+                  <li><%= link_to "Favorites", favorites_url(:id => @user.id) %><li></ul>
+
+
+              
+               <!--Creation Menu -->
+              <% if @viewer.nil? %> 
+                <li class="nav-header">Create</li><ul class="nav nav-list">
+                        <li><%= link_to "Pin", new_pin_url %></li>
+                        <li><%= link_to "Board", new_board_url %></li>
+                        <li><%= link_to "Find Friends", find_friends_url %></li></ul>
+              <% end %>
+
+              <!--Sort Menu -->
               <li class="nav-header">Sort</li><ul class="nav nav-list">
                       <li><%= link_to "Random", user_url(:sort => 'random') %></li>
                       <li><%= link_to "Newest", user_url(:sort => 'newest') %></li>
                       <li><%= link_to "Oldest", user_url(:sort => 'oldest') %></li>
                     </ul>
+
+              <!--PreMade Board Menu -->
+              <% if @viewer.nil? %> 
                <li class="nav-header">Pre-Build Boards</li><ul class="nav nav-list">
-                                        <li><%= button_to "Kitten Board", kittens_url, method: :post %></li>
-                      <li><%= button_to "Nick Cage Board", cage_url, method: :post %></li>
+                      <li><%= link_to "Kitten Board", kittens_url, method: :post %></li>
+                      <li><%= link_to "Nick Cage Board", cage_url, method: :post %></li>
+              <% end %>
 
             </ul>
           </div><!--/.well -->
@@ -51,8 +82,10 @@
             
             <% @user_board_pins.each do |pin| %>
             <li id="resizable">
+              <% if !pin.pin.nil? %>
               <%= link_to image_tag(pin.pin.url, :size => "400x400"), board_pin_url(pin.id) %><br>
               <%= pin.pin.description %><br>
+              <% end %>
             </li>
             <% end %>
         </div>

@@ -2,8 +2,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.where(:user_id => session[:id])
-    @user = User.find_by_id(session[:id])
+    @boards = Board.where(:user_id => params[:id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,31 +88,21 @@ class BoardsController < ApplicationController
   end
 
   def create_kitten_board
+    #create random kitten board. For board testing purposes
     @board = Board.new
-    @board.name = "Kittens"
     @board.user_id = session[:id]
-    @board.save
-    
-    20.times do 
-      height = rand(200..400).to_i
-      width = rand(200..400).to_i
-      @board.pins.create :user_id => session[:id], :url => "http://placekitten.com/g/#{height}/#{width}"
-    end
-    redirect_to user_url(session[:id])
+    @board.create_kitten_board
+
+    redirect_to board_url(@board.id)
   end
 
     def create_cage_board
+   #create random nick cage board. For board testing purposes
     @board = Board.new
-    @board.name = "Nick Cage!"
     @board.user_id = session[:id]
-    @board.save
-    
-    20.times do 
-      height = rand(200..400).to_i
-      width = rand(200..400).to_i
-      @board.pins.create :user_id => session[:id], :url => "http://placecage.com/g/#{height}/#{width}"
-    end
-    redirect_to user_url(session[:id])
+    @board.create_cage_board
+
+    redirect_to board_url(@board.id)
   end
 
 end

@@ -12,6 +12,10 @@
  *= require font-awesome
  */
 
+ #friend {
+    color:green;
+ }
+
  li#nav-home-icon {
   font-size: 40;
  }

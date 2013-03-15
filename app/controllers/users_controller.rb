@@ -2,11 +2,36 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
-  before_filter :authorize_user, :except => [:index, :new, :create, :introduction];
+  before_filter :sanitize_user, :except => [:introduction]
+  before_filter :sanitize_session, :except => [:introduction]
+  before_filter :authorize_user, :except => [:index, :new, :create, :introduction, :show];
+  
+
+  def sanitize_user
+
+    #check if user number exists
+    if params[:id]
+        @user = User.find_by_id(params[:id])
+        if @user.nil?
+          redirect_to introduction_url, notice: "Nice Try"
+        end
+    end
+  end
+
+  def sanitize_session
+
+     #check to see if session number is still valid
+     if session[:id]
+        @session_user = User.find_by_id(session[:id])
+        if @session_user.nil?
+          redirect_to introduction_url, notice: "Nice Try"
+        end
+     end
+  end
 
   def authorize_user
     @user = User.find_by_id(params[:id])
-    if @user.id != session[:id]
+    if session[:id].nil? || @user.nil? || @user.id != session[:id]
       redirect_to root_url, notice: "Nice Try"
     end
   end
@@ -23,7 +48,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find_by_id(session[:id])
+
+      #determine of viewer is same as user
+       @user = User.find_by_id(params[:id])
+      if params[:id].to_i != session[:id].to_i
+        @viewer = User.find_by_id(session[:id])
+      end
+
+      #sorting options
       if params[:sort] == 'random'
         @user_board_pins = @user.board_pins.shuffle
       elsif params[:sort] == "newest"
@@ -56,7 +88,7 @@ class UsersController < ApplicationController
     #authorization makes user call redundant
     # must have correct @user or else wont
     # even make it this far
-    @user = User.find(params[:id])
+    @user = User.find(session[:id])
   end
 
   # POST /users
@@ -106,9 +138,6 @@ class UsersController < ApplicationController
   end
 
 def introduction
-  if session[:id]
-    redirect_to user_url(session[:id])
-  end
 end
 
 end

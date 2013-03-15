@@ -11,12 +11,23 @@
   <% if @board_pin.board.user_id == session[:id] %>
   <%= link_to "Delete Pin", board_pin_url(:id => @board_pin.id, :board_id => @board_pin.board.id), method: :delete, :confirm => "Do You Really Want To Delete This Pin From #{@board_pin.board.name}" %>
   <% else %>
-  	<%= form_tag '/board_pins', method: :post %>
+  
+  	<!--Form for adding pin to session user board-->
+  	<%= form_tag '/board_pins', method: :post  do %>
   	Add To: 
   	<%= hidden_field_tag :pin_id, @board_pin.pin %>
   	<%= collection_select :post, :board_id, Board.where(:user_id => session[:id]), :id, :name %>
   	<%= submit_tag "Add Pin" %>
-  <% end %>
+    <% end %>
+  <% end %><!--end form-->
+
+
+  <!--favorites button-->
+  <% if @board_pin.favorites.find_by_user_id_and_board_pin_id(session[:id], @board_pin.id)%>
+    <%= button_to "Remove From Favorites", favorites_url(:id => @board_pin.pin.id), method: :delete %>
+  <% else %>
+    <%= button_to "Add To Favorites", favorites_url(:id => @board_pin.pin.id), method: :post %>
+    <%end%>
 </p>
 
 <p>
