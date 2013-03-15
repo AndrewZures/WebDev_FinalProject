@@ -1,0 +1,10 @@
+$("#commentlist").append('hello');
+
+$("#commentlist").append("
+	(<%= j(@new_comment.comment) %><b> By </b>
+	<%= @new_comment.user.name %><b> On </b>
+	<%= j(@new_comment.created_at.strftime("%A, %B %eth, %Y")) %> | 
+	<% if @new_comment.user_id == session[:id] %>
+		<%= j(link_to "Edit", edit_pin_comment_url(@new_comment.id)) %>
+		<% end %><br>");
+
