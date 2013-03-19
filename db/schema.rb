@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315191646) do
+ActiveRecord::Schema.define(:version => 20130318224317) do
 
   create_table "board_pins", :force => true do |t|
     t.integer  "pin_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(:version => 20130315191646) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.text     "context"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "content"
+    t.integer  "user_id"
+  end
+
   create_table "favorites", :force => true do |t|
     t.integer  "user_id"
     t.integer  "board_pin_id"
@@ -38,10 +48,10 @@ ActiveRecord::Schema.define(:version => 20130315191646) do
   end
 
   create_table "follows", :force => true do |t|
-    t.integer  "follower_id"
-    t.integer  "following_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
+    t.integer  "board_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "friends", :force => true do |t|

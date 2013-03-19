@@ -3,6 +3,8 @@ ruby '1.9.3'
 gem 'rails', '3.2.11'
 gem 'quiet_assets'
 
+gem 'mail'
+
 gem "font-awesome-rails"
 
 

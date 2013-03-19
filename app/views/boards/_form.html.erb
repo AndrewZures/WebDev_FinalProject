@@ -11,20 +11,11 @@
     </div>
   <% end %>
 
-
   <div class="field">
-    <%= f.label @board.user.name %><br />
+     <%= f.label @board.user.name %><br />
     <%= f.hidden_field :user_id %>
   </div>
   
-  <!--
-  <div class="field">
-    <%#= f.label :pin_id %><br />
-    <%#= f.number_field :pin_id %>
-  </div>
-  -->
-
-
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

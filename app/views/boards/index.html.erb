@@ -1,36 +1,39 @@
 
+<h4><%= link_to 'New Board', new_board_path %></h4><br>
 
-<br><br>
+<!-- determine if any boards already exist -->
+<% if @boards.count == 0 %>
+  <h3>No Current Boards</h3>
 
-<h1><%= @boards.first.user.name %>'s Boards</h1>
+<% else %>
+    <!-- determine if boards' user is also session user -->
+    <% if @boards.first.user_id == session[:id] %>
+        <h1>Your Boards</h1>
 
-<table>
-  <tr>
-    <!--<th>User</th>
-    <th>Pin</th>-->
-    <th>Name</th>
-    <th>Category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <% else %>
+      <h1><%= @boards.first.user.name %>'s Boards</h1>
+    <% end %>
 
-<% @boards.each do |board| %>
-  <tr>
-    <!--<td><%#= board.user_id %></td>
-    <td><%#= board.pin_id %></td>-->
-    <td><h2><%= link_to board.name, board %></h2></td>
-    <td><%= board.category %></td>
 
-  <% board.pins.each do |pin| %>
-  <td>
-    <%= image_tag(pin.url, :heigth => 60, :width => 60) %>
-  </td>
-  <% end %>
-</tr>
+    <table>
+
+    <% @boards.each do |board| %>
+      <tr>
+        <td><h2><%= link_to board.name, board %></h2>
+
+        <!-- provide first five pictures of each board -->
+      <% board.board_pins.each_with_index do |boardpin, ind| %>
+        <% break if ind == 5 %>
+      <td>
+        <%= link_to image_tag(boardpin.pin.url, :heigth => 150, :width => 150), board_pin_url(boardpin.id) %>
+      </td>
+      <% end %>
+
+    </tr>
+    <% end %>
+    </table>
+
+    <br />
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Board', new_board_path %>

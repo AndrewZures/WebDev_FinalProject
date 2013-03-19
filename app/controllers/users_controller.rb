@@ -30,10 +30,18 @@ class UsersController < ApplicationController
   end
 
   def authorize_user
-    @user = User.find_by_id(params[:id])
-    if session[:id].nil? || @user.nil? || @user.id != session[:id]
+
+    if session[:id].nil? 
       redirect_to root_url, notice: "Nice Try"
+
+    elsif params[:id]
+        @user = User.find_by_id(params[:id])
+
+        if @user.nil? || @user.id != session[:id]
+          redirect_to root_url, notice: "Error"
+        end
     end
+
   end
 
   def index
@@ -98,7 +106,15 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+
+        #set session ID
         session[:id] = @user.id
+
+        if !@user.email.blank?
+        #send welcome email
+          #UserMailer.welcome_email(@user).deliver
+        end
+        
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -138,6 +154,25 @@ class UsersController < ApplicationController
   end
 
 def introduction
+  #go straight to view
 end
+
+def edit_password
+    #go straight to view
+end
+
+def update_password
+  @user = User.find_by_id(session[:id])
+  @user.password = params[:new_password]
+  @user.save
+  redirect_to user_url(session[:id])
+end
+
+
+
+
+
+
+
 
 end

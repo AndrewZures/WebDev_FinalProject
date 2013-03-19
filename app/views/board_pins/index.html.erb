@@ -2,26 +2,23 @@
 <br><br><h1>Pins</h1>
 
 
+<% if @boards.count == 0 %>
+  <h3>No Current Boards</h3>
+<% else %>
 
-<% @board_pins.each do |board_pin| %>
-  <div class="span2" background-color= "#eeeeee">
-  <tr>
-    From <td><%= link_to board_pin.board.name, board_url(board_pin.board) %></td>
-    <br>By <%= link_to board_pin.pin.user.name, user_url(board_pin.pin.user)%></td>
-    <td><%= link_to image_tag(board_pin.pin.url), board_pin_url(board_pin) %> <td>
-    <% if params[:board_id]   && session[:id] %>
-      <td><%= button_to "Add to #{@current_board.name}", board_pins_url(:board_id => params[:board_id], :pin_id => board_pin.pin_id), method: :post%><td>
-      <% end %>
-    <td><%= board_pin.description %></td>
+<% @boards.each do |board| %>
+  <div class="span12">
+    <% board.board_pins.each_with_index do |board_pin, index| %>
+           <% break if index == 5 %>
+          <div class="span2" background-color= "#eeeeee">
+            From <%= link_to board_pin.board.name, board_url(board_pin.board) %>
+            <br>By <%= link_to board_pin.pin.user.name, user_url(board_pin.pin.user)%>
+            <%= link_to image_tag(board_pin.pin.url), board_pin_url(board_pin) %> 
+            </div>
+        <% end %>
+      </div>
 
-    <% if session[:id] != board_pin.board.user.id %>
-      <td><%= link_to 'Show', board_pin %></td>
-      <td><%= link_to 'Edit', edit_board_pin_path(board_pin) %></td>
-      <td><%= link_to 'Destroy', board_pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-  </tr>
-</div><!--span2 end -->
-
-<% end %>
+    <% end %>
+<% end %>  <!-- end if statement-->
 
 

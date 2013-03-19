@@ -12,10 +12,10 @@ class FriendsController < ApplicationController
     
         respond_to do |format|
           if friend.save
-          format.js 
-          format.html {redirect_to users_url }
-          format.json { render json: @users }
-        end
+            format.js 
+            format.html {redirect_to users_url }
+            format.json { render json: @users }
+          end
       end
   end
 

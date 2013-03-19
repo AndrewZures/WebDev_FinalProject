@@ -1,35 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>User:</b>
-  <%= link_to @board.user.name, user_url(@board.user) %>
-</p>
-
-<!--
-<p>
-  <b>Pin:</b>
-  <%#= @board.pin_id %>
-</p>
--->
-
-<p>
-  <b>Name:</b>
-  <%= @board.name %><br>
-  <%= link_to "Add Pin", board_pins_url(:board_id => @board.id) %><br>
-  <%= link_to "Upload/Link Your Own Pin", new_pin_url(:board_id => @board.id) %> <br>
-  <%= button_to 'Edit', edit_board_path(@board) %>
-  <%= button_to 'Destroy', @board, method: :delete, :confirm => "Are You Sure?" %>
+   <%= link_to 'Edit', edit_board_path(@board) %> | 
   <%= link_to 'Back', boards_path %>
-</p>
+  </p>
+  <%= link_to "Add Pin", board_pins_url(:board_id => @board.id) %><br>
+  <%= link_to "Link Your Own Pin", new_pin_url(:board_id => @board.id) %> <br>
+  <%= link_to "Comments for " + @board.name + " Board", board_comments_url(@board.id) %> <br>
 
-<p>
-  <b>Category:</b>
-  <%= @board.category %>
 </p>
+  <h3>User:
+  <%= link_to @board.user.name, user_url(@board.user) %></h3>
+   
+  <h3>Board Name: <%= @board.name %></h3>
+
+  <h4><b>Category:</b> <%= @board.category %> </h4>
+
+
+
 
   <% count = 0 %>
 	<% @board.pins.each do |bp| %>
-      <%= link_to image_tag(bp.url, :height => 200, :width => 200), board_pin_url(@board.board_pins.find_by_pin_id(bp.id).id) %> </li>
+      <%= link_to image_tag(bp.url, :height => 300, :width => 300), board_pin_url(@board.board_pins.find_by_pin_id(bp.id).id) %> </li>
 	<% end %>
 </ul>
 

@@ -2,8 +2,12 @@ class BoardPinsController < ApplicationController
   # GET /board_pins
   # GET /board_pins.json
   def index
-    @board_pins = BoardPin.all
-    @current_board = Board.find_by_id(params[:board_id])
+    @boards = Board.limit(40)
+
+    @board_pins = BoardPin.limit(300)
+    if params[:board_id]
+      @current_board = Board.find_by_id(params[:board_id])
+    end
 
     respond_to do |format|
       format.html # index.html.erb

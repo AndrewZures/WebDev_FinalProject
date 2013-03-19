@@ -1,7 +1,7 @@
 class Follow < ActiveRecord::Base
-  attr_accessible :follower_id, :following_id
-
-  validates_presence_of :following_id, :follower_id
+  attr_accessible :board_id, :user_id
 
   belongs_to :user
+  belongs_to :board
+  
 end

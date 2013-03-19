@@ -1,39 +1,16 @@
-<h1>Listing users</h1>
-
-<table>
-  <tr>
-    <th>name</th>
-    <th>Fname</th>
-    <th>Lname</th>
-    <th>Email</th>
-    <th>Location</th>
-    <th>About</th>
-    <th>Image</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Find Friends!</h1>
 
 <% @users.each do |user| %>
- <% if session[:id] != user.id %>  
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.fname %></td>
-    <td><%= user.lname %></td>
-    <td><%= user.email %></td>
-    <td><%= user.location %></td>
-    <td><%= user.about %></td>
-    <td><%= link_to image_tag(user.image, :height => 50, :width => 50), user %></td>
+ <% if session[:id] != user.id %> 
+ <div class="span2">
+  <h3><%= user.name %></h3>
+    <%= link_to image_tag(user.image, :height => 150, :width => 150), user %>
    
         <% if Friend.where(:user_id => session[:id], :friend_id => user.id).count > 0 %>
-        <% else %>
-            <td><%= link_to "Friend!", create_friend_url(:id => user.id), method: :post %></td>
+            <h4>Friended!</h4>
+        <% else %>  
+            <h4><%= link_to "Friend!", create_friend_url(:id => user.id), method: :post %></h4>
         <% end %> 
-  </tr>
+    </div>
   <% end %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>

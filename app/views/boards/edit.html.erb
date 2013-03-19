@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
+
+<h5 style="color:Red;">
+<%= link_to 'Destroy Board', @board, method: :delete, :confirm => "Are You Sure?" %>
+</h5>
+
 <%= link_to 'Show', @board %> |
 <%= link_to 'Back', boards_path %>

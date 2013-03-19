@@ -45,6 +45,7 @@
     <%= f.text_field :password %>
     <% else %>
     <%= f.hidden_field :password %>
+    <%= link_to "Change Password", edit_password_url %>
     <% end %>
   </div><br />
   <div class="actions">

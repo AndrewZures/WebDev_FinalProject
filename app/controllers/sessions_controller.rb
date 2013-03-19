@@ -16,8 +16,12 @@ class SessionsController < ApplicationController
 			#if user found authentiate password entry
 			if user.authenticate(params[:password])
 				session[:id] = user.id
+				redirect_to user_url(session[:id])
+			else
+				redirect_to root_url
 			end
+		else
+			redirect_to root_url		
 		end
-		redirect_to user_url(session[:id])
 	end
 end

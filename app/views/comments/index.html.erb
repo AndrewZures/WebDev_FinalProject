@@ -1,0 +1,31 @@
+<% if @board %>
+    <%= link_to "Go to board", board_url(@board.id)%>
+    <h3><%= @board.name%> Comments</h3>
+<% end %>
+
+<% if @user %>
+    <%= link_to "Go to user", user_url(@user.id)%>
+    <h3><%= @user.name%> Comments</h3>
+<% end %>
+
+
+
+<ul id="comments">
+  <% @comments.each do |comment| %>
+    <% if comment.user_id != nil %>
+    <li><b><%= comment.user.name %> wrote: </b><%= comment.content %> on <%= comment.created_at %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+<h5>Write a New Comment</h5>
+<%= form_for [@commentable, Comment.new] do |f| %>
+  <div class="field">
+    <%   f.label :content %>
+    <%= f.text_area :content, :rows => 2 %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Add comment" %>
+  </div>
+<% end %>
