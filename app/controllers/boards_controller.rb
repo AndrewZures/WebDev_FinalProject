@@ -2,7 +2,11 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.where(:user_id => params[:id])
+    if params[:id]
+      @boards = Board.where(:user_id => params[:id])
+    else
+      @boards = Board.where(:user_id => session[:id])
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +19,9 @@ class BoardsController < ApplicationController
   def show
     @board = Board.find_by_id(params[:id])
     @user = User.find_by_id(session[:id])
+
+    @follow_bool = Follow.find_by_user_id_and_board_id(@user.id, @board.id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @board }
@@ -86,6 +93,22 @@ class BoardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def show_follow_board
+      @pin_array = []
+      @follows = Follow.where(:user_id => session[:id])
+      @follows.each do |followed_board|
+          followed_board.each_with_index do |boardpin, index|
+            break if index == 10
+              @pin_array.push boardpin
+        end
+      end
+
+      @pin_array.shuffle
+  end
+
+
 
   def create_kitten_board
     #create random kitten board. For board testing purposes

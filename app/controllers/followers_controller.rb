@@ -1,14 +1,20 @@
 class FollowersController < ApplicationController
+
   def create
-  	follower = Follow.new
-  	follower.follower_id = session[:id]
-  	follower.following_id = params[:id]
-  	follower.save
-  	redirect_to user_url(session[:id])
+      follower = Follow.new
+      follower.user_id = session[:id]
+      follower.board_id = params[:id]
+
+      follower.save
+
+      redirect_to :back
   end
 
   def destroy
-  	follower = Follow.where(:follower_id => session[:id], :following_id => params[:id])
-  	follower.destroy
+  	follower = Follow.find_by_user_id_and_board_id(session[:id], params[:id])
+    if follower
+  	   follower.destroy
+       redirect_to :back
+     end
   end
 end

@@ -13,7 +13,7 @@ class FriendsController < ApplicationController
         respond_to do |format|
           if friend.save
             format.js 
-            format.html {redirect_to users_url }
+            format.html {redirect_to :back }
             format.json { render json: @users }
           end
       end

@@ -4,9 +4,19 @@
    <%= link_to 'Edit', edit_board_path(@board) %> | 
   <%= link_to 'Back', boards_path %>
   </p>
-  <%= link_to "Add Pin", board_pins_url(:board_id => @board.id) %><br>
+  <%= link_to "Add Existing Pin", board_pins_url(:board_id => @board.id) %><br>
   <%= link_to "Link Your Own Pin", new_pin_url(:board_id => @board.id) %> <br>
+  ------ <br>
   <%= link_to "Comments for " + @board.name + " Board", board_comments_url(@board.id) %> <br>
+
+  <h4>     
+  <% if @follow_bool %>
+    Following Board  <%= link_to "Unfollow Board", delete_follow_url(:id => @board.id), method: :delete %>
+  <% else %>
+    <%= link_to "Follow Board", create_follow_url(:id => @board.id), method: :post %>
+    <% end %>
+
+  </h4>
 
 </p>
   <h3>User:

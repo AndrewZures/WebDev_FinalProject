@@ -1,5 +1,5 @@
 class Board < ActiveRecord::Base
-  attr_accessible :category, :name, :pin_id, :user_id
+  attr_accessible :category, :name, :pin_id, :user_id, :fav, :foll
 
   validates_presence_of :user_id
 

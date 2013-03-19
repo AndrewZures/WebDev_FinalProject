@@ -112,8 +112,9 @@ class UsersController < ApplicationController
 
         if !@user.email.blank?
         #send welcome email
-          #UserMailer.welcome_email(@user).deliver
+          UserMailer.welcome_email(@user).deliver
         end
+
         
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }

@@ -38,6 +38,11 @@ Pinterest::Application.routes.draw do
   get "edit_password" => "users#edit_password", as: :edit_password
   put "update_password" => "users#update_password", as: :update_password
 
+
+  get "follows" => "followers#index", as: :follows
+  post "follows/:id" => "followers#create", as: :create_follow
+  delete "follows/id" => "followers#destroy", as: :delete_follow
+
   #board_pin routes
   resources :board_pins
 
