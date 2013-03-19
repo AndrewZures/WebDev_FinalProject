@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :sanitize_session, :except => [:introduction]
   before_filter :authorize_user, :except => [:index, :new, :create, :introduction, :show];
   
-
+  # used to remove attempt to search for user that doesn't exist
   def sanitize_user
 
     #check if user number exists
@@ -18,8 +18,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def sanitize_session
 
+  def sanitize_session
      #check to see if session number is still valid
      if session[:id]
         @session_user = User.find_by_id(session[:id])
@@ -29,11 +29,19 @@ class UsersController < ApplicationController
      end
   end
 
+  #authorize user to view certain views
   def authorize_user
+    #note: this filter is now invoked less often since
+    #  a number of views have been modeled to show different
+    # information if the viewer is also the session user
 
+
+    #if session ID is nil, boot to root
     if session[:id].nil? 
       redirect_to root_url, notice: "Nice Try"
 
+    #if there exists an id param an it doesn't
+    # equal the session user, then boot
     elsif params[:id]
         @user = User.find_by_id(params[:id])
 
@@ -41,11 +49,12 @@ class UsersController < ApplicationController
           redirect_to root_url, notice: "Error"
         end
     end
-
   end
 
+
+
   def index
-    @users = User.all
+    @users = User.limit(200)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -110,12 +119,14 @@ class UsersController < ApplicationController
         #set session ID
         session[:id] = @user.id
 
+        #since actionmailer can crash the app if the email is blank
+        #include an email check just in case
         if !@user.email.blank?
-        #send welcome email
+
+          #send welcome email if save successful
           UserMailer.welcome_email(@user).deliver
         end
 
-        
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -170,10 +181,4 @@ def update_password
 end
 
 
-
-
-
-
-
-
-end
+end #end of file

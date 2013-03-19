@@ -26,19 +26,12 @@ Pinterest::Application.routes.draw do
   post "createcageboard" => "boards#create_cage_board", as: :cage
 
   #friends routes
-  get "friends/new"
   post "friends/:id" => "friends#create", as: :create_friend
-  get "friends/edit"
-  get "friends/update"
   delete  "friends/:id" => "friends#destroy", as: :unfriend
   get "friends/index"
-
   get "find_friends" => "friends#find_friends", as: :find_friends
 
-  get "edit_password" => "users#edit_password", as: :edit_password
-  put "update_password" => "users#update_password", as: :update_password
-
-
+  #follows board
   get "follows" => "followers#index", as: :follows
   post "follows/:id" => "followers#create", as: :create_follow
   delete "follows/id" => "followers#destroy", as: :delete_follow
@@ -58,5 +51,9 @@ Pinterest::Application.routes.draw do
   resources :users do
     resources :comments
   end
+
+  #specific password reset routes, related to user
+  get "edit_password" => "users#edit_password", as: :edit_password
+  put "update_password" => "users#update_password", as: :update_password
 
 end
