@@ -17,4 +17,8 @@ class FollowersController < ApplicationController
        redirect_to :back
      end
   end
+
+  def index
+    @user = User.find_by_id(params[:id])
+  end
 end

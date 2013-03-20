@@ -86,7 +86,8 @@ class BoardPinsController < ApplicationController
     @board_pin = BoardPin.find(params[:id])
     @pins = BoardPin.where(:pin_id => @board_pin.pin_id)
     if @pins.count <= 1
-      @pins.destroy
+      @deleted_pin = Pin.find_by_id(@board_pin.pin_id)
+      @deleted_pin.destroy
     end
     @board_pin.destroy
 

@@ -1,0 +1,8 @@
+<h1> <%= link_to @user.name, user_url(@user.id) %> is Following These Boards </h1>
+<br>
+<h3>
+<ul>
+<% @user.follows.each do |follow| %>
+	<li><%= link_to follow.board.name, board_url(follow.board.id) %> by <%= link_to follow.board.user.name, user_url(follow.board.user.id)%></li>
+	<%end%>
+</ul></h3>

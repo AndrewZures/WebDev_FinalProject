@@ -2,7 +2,10 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.where(:id => params[:id])
+    if params[:id]
+      @user = User.find_by_id(params[:id])
+      @pins = @user.pins
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -61,10 +64,12 @@ class PinsController < ApplicationController
   # PUT /pins/1
   # PUT /pins/1.json
   def update
-    @pin = Pin.find(params[:id])
+    @pin = Pin.find(params[:pin_id])
+    @pin.description = params[:description]
+    @pin.url = params[:url]
 
     respond_to do |format|
-      if @pin.update_attributes(params[:pin])
+      if @pin.save
         format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }
         format.json { head :no_content }
       else

@@ -1,27 +1,20 @@
-<h1>Listing pins</h1>
+<%= link_to "Back To Profile", user_url(@user.id)%>
+<h1>
+<% if @user.nil? %>
+<% else %>
 
-<table>
-  <tr>
-    <th>Url</th>
-    <th>Description</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if @user.id == session[:id] %>
+  Your Pins
+  <% else %>
+  <% @user.name%> Pins
+  <% end %></h1>
+<% end %>
+
 
 <% @pins.each do |pin| %>
-  <tr>
-    <td><%= image_tag(pin.url, height: 200, width: 200) %></td>
-    <td><%= pin.description %></td>
-    <td><%= pin.user_id %></td>
-    <td><%= link_to 'Show', pin %></td>
-    <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-    <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <a href="<%= board_pin_url(pin.boards.first.id) %>"><img src="<%=pin.url%>" height="200" width="200"></a>
+
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New Pin', new_pin_path %>

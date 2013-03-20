@@ -35,6 +35,7 @@
                     <li><%= link_to "Boards", boards_url(:id => session[:id])%></li>
                     <li><%= link_to "Friends", friends_index_url(:id => session[:id])%></li>
                     <li><%= link_to "Favorites", favorites_url(:id => session[:id])%></li>
+                    <li><%= link_to "Following", follows_url(:id => session[:id])%></li>
                   </ul>
               </li> 
               <% end %>
