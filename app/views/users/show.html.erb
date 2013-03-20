@@ -47,7 +47,9 @@
                   <li><%= link_to "Friends (#{@user.friends.count})", friends_index_url(:id => @user.id) %></li>
                   <li><%= link_to "Pins Added", pins_url(:id => @user.id) %></li>
                   <li><%= link_to "Favorites", favorites_url(:id => @user.id) %><li>
-                    <li><%= link_to "Following", follows_url(:id => @user.id)%></li></ul>
+                    <li><%= link_to "Following", follows_url(:id => @user.id)%></li>
+
+                  </ul>
 
 
               
