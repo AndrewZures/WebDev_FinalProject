@@ -30,7 +30,7 @@
 
 	#START Shackleton User
 	shack = User.create :name => "Shackleton", :password => "jones", :image => "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Shackletonhead.jpg/220px-Shackletonhead.jpg"
-	trans = Board.create :name => "Bacon!", :user_id => shack.id
+	trans = Board.create :name => "Sports!", :user_id => shack.id
 
 	#transportation board 
 	30.times do
@@ -55,19 +55,19 @@
 
 	#START Roland User
 	shack = User.create :name => "Roland", :password => "jones", :image => "http://www.deviantart.com/download/152416940/Roland_Deschain_II_by_silverwerwolf.jpg"
-	trans = Board.create :name => "It's Charlie!", :user_id => shack.id
+	trans = Board.create :name => "Business", :user_id => shack.id
 
 	#transportation board 
 	30.times do
 		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/business/#{num}", :user_id => shack.id
+		trans.pins.create :url => "http://lorempixel.com/#{height}/#{width}/business/#{num}", :user_id => shack.id
 	end
 
 
 	#fashion board
-	fashion = Board.create :name => "Food", :user_id => shack.id
+	fashion = Board.create :name => "Fashion", :user_id => shack.id
 	30.times do
 		num = rand(1..10).to_i
 		height = rand(200..700).to_i
@@ -85,7 +85,7 @@
 		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/abstract/#{num}", :user_id => shack.id
+		trans.pins.create :url => "http://lorempixel.com/#{height}/#{width}/abstract/#{num}", :user_id => shack.id
 	end
 
 
@@ -111,7 +111,7 @@
 		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/people/#{num}", :user_id => shack.id
+		trans.pins.create :url => "http://lorempixel.com/#{height}/#{width}/people/#{num}", :user_id => shack.id
 	end
 
 
@@ -127,7 +127,7 @@
 	########### END Churchill User
 
 
-	#START Churchill User
+	#START Amelia User
 	shack = User.create :name => "Amelia", :password => "jones", :image => "http://www.csmonitor.com/var/ezflow_site/storage/images/media/content/2012/0602-amelia-earhart-last-days.jpg/12729091-1-eng-US/0602-amelia-earhart-last-days.jpg_full_600.jpg"
 	trans = Board.create :name => "Animals", :user_id => shack.id
 
@@ -136,7 +136,7 @@
 		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/animals/#{num}", :user_id => shack.id
+		trans.pins.create :url => "http://lorempixel.com/#{height}/#{width}/animals/#{num}", :user_id => shack.id
 	end
 
 
