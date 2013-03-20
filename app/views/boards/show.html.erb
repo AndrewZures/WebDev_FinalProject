@@ -31,7 +31,7 @@
 
   <% count = 0 %>
 	<% @board.pins.each do |bp| %>
-      <%= link_to image_tag(bp.url, :height => 300, :width => 300), board_pin_url(@board.board_pins.find_by_pin_id(bp.id).id) %> </li>
+      <a href="<%=board_pin_url(@board.board_pins.find_by_pin_id(bp.id).id) %>"><img src="<%=bp.url%>" height="300" width="300"></a>
 	<% end %>
 </ul>
 
