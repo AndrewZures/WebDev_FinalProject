@@ -13,7 +13,7 @@
           <div class="span2" background-color= "#eeeeee">
             From <%= link_to board_pin.board.name, board_url(board_pin.board) %>
             <br>By <%= link_to board_pin.pin.user.name, user_url(board_pin.pin.user)%>
-            <%= link_to image_tag(board_pin.pin.url), board_pin_url(board_pin) %> 
+            <a href="<%=board_pin_url(board_pin)%>"><img src="<%=board_pin.pin.url%>"></a>
             </div>
         <% end %>
       </div>
