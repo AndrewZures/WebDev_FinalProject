@@ -158,12 +158,12 @@
 	#My personal board
 	T = User.create :name => "Andrew", :password => "jones", :image => "http://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/P6M_SeaMaster.jpg/300px-P6M_SeaMaster.jpg"
 
-	F = Board.create :name => "City", :user_id => T.id
+	F = Board.create :name => "Nature", :user_id => T.id
 	30.times do
 		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/nature/#{num}", :user_id => T.id
+		F.pins.create :url => "http://lorempixel.com/#{height}/#{width}/nature/#{num}", :user_id => T.id
 
 	end
 
