@@ -12,7 +12,7 @@
 
 
 <% @pins.each do |pin| %>
-  <a href="<%= board_pin_url(pin.boards.first.id) %>"><img src="<%=pin.url%>" height="200" width="200"></a>
+  <a href="<%= board_pin_url(pin.board_pins.first.id) %>"><img src="<%=pin.url%>" height="200" width="200"></a>
 
 <% end %>
 
