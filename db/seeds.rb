@@ -34,63 +34,68 @@
 
 	#transportation board 
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		trans.pins.create :url => "http://fillmurray.com/#{height}/#{width}", :user_id => shack.id
+		trans.pins.create :url => "http://lorempixel.com/#{height}/#{width}/sports/#{num}", :user_id => shack.id
 	end
 
 
 	#fashion board
-	fashion = Board.create :name => "Doggies", :user_id => shack.id
+	fashion = Board.create :name => "Nature", :user_id => shack.id
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://placedog.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/nature/#{num}", :user_id => shack.id
 	end
 
 	########### END Shackleton User
 
 
 	#START Roland User
-	shack = User.create :name => "R. Deschain", :password => "jones", :image => "http://i213.photobucket.com/albums/cc286/lakewrestler125/Roland-2.png"
+	shack = User.create :name => "Roland", :password => "jones", :image => "http://www.deviantart.com/download/152416940/Roland_Deschain_II_by_silverwerwolf.jpg"
 	trans = Board.create :name => "It's Charlie!", :user_id => shack.id
 
 	#transportation board 
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		trans.pins.create :url => "http://placesheen.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/business/#{num}", :user_id => shack.id
 	end
 
 
 	#fashion board
 	fashion = Board.create :name => "Food", :user_id => shack.id
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://nicenicejpg.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/fashion/#{num}", :user_id => shack.id
 	end
 
 	########### END Roland User
 
-		#START Ender User
+	#START Ender User
 	shack = User.create :name => "Ender", :password => "jones", :image => "http://t1.gstatic.com/images?q=tbn:ANd9GcSCUFENZ1LZXbsLM-24fqi2kHobfEQeeLqDLtLqpVgQHToWmCpF"
-	trans = Board.create :name => "Cats", :user_id => shack.id
+	trans = Board.create :name => "Abstract", :user_id => shack.id
 
-	#transportation board 
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		trans.pins.create :url => "http://placekitten.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/abstract/#{num}", :user_id => shack.id
 	end
 
 
 	#fashion board
-	fashion = Board.create :name => "Dogs", :user_id => shack.id
+	fashion = Board.create :name => "Night On The Town", :user_id => shack.id
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://placedog.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/nightlife/#{num}", :user_id => shack.id
 	end
 
 	########### END Ender User
@@ -99,22 +104,24 @@
 
 	#START Churchill User
 	shack = User.create :name => "Churchill", :password => "jones", :image => "http://www.museumsyndicate.com/images/artists/667.jpg"
-	trans = Board.create :name => "Abstract", :user_id => shack.id
+	trans = Board.create :name => "People", :user_id => shack.id
 
 	#transportation board 
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		trans.pins.create :url => "http://placedog.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/people/#{num}", :user_id => shack.id
 	end
 
 
 	#fashion board
-	fashion = Board.create :name => "Night Out", :user_id => shack.id
+	fashion = Board.create :name => "Biz Pics", :user_id => shack.id
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://placesheen.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/business/#{num}", :user_id => shack.id
 	end
 
 	########### END Churchill User
@@ -122,22 +129,24 @@
 
 	#START Churchill User
 	shack = User.create :name => "Amelia", :password => "jones", :image => "http://www.csmonitor.com/var/ezflow_site/storage/images/media/content/2012/0602-amelia-earhart-last-days.jpg/12729091-1-eng-US/0602-amelia-earhart-last-days.jpg_full_600.jpg"
-	trans = Board.create :name => "Kats!", :user_id => shack.id
+	trans = Board.create :name => "Animals", :user_id => shack.id
 
 	#transportation board 
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		trans.pins.create :url => "http://placekitten.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/animals/#{num}", :user_id => shack.id
 	end
 
 
 	#fashion board
-	fashion = Board.create :name => "Bill", :user_id => shack.id
+	fashion = Board.create :name => "Food", :user_id => shack.id
 	30.times do
+		num = rand(1..10).to_i
 		height = rand(200..700).to_i
 		width = rand(200..700).to_i
-		fashion.pins.create :url => "http://fillmurray.com/#{height}/#{width}", :user_id => shack.id
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/food/#{num}", :user_id => shack.id
 	end
 
 	########### END Churchill User
@@ -149,11 +158,13 @@
 	#My personal board
 	T = User.create :name => "Andrew", :password => "jones", :image => "http://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/P6M_SeaMaster.jpg/300px-P6M_SeaMaster.jpg"
 
-	F = Board.create :name => "Sports", :user_id => T.id
+	F = Board.create :name => "City", :user_id => T.id
 	30.times do
-		height = rand(200..400).to_i
-		width = rand(200..400).to_i
-		F.pins.create :url => "http://placesheen.com/#{height}/#{width}", :user_id => T.id
+		num = rand(1..10).to_i
+		height = rand(200..700).to_i
+		width = rand(200..700).to_i
+		fashion.pins.create :url => "http://lorempixel.com/#{height}/#{width}/nature/#{num}", :user_id => T.id
+
 	end
 
 

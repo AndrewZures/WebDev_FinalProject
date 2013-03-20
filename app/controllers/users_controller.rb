@@ -121,11 +121,6 @@ class UsersController < ApplicationController
 
         #since actionmailer can crash the app if the email is blank
         #include an email check just in case
-        if !@user.email.blank?
-
-          #send welcome email if save successful
-          UserMailer.welcome_email(@user).deliver
-        end
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }

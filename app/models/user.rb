@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name
 
   before_save :check_image
+  after_save :send_confirm_email
 
   has_many :boards
   has_many :board_pins, :through => :boards
@@ -26,6 +27,14 @@ class User < ActiveRecord::Base
   	if self.image.blank?
   		self.image = "/assets/dog.jpg"
   	end
+  end
+
+  def send_confirm_email
+       if !self.email.blank?
+
+        #send welcome email if save successful
+        UserMailer.welcome_email(self).deliver
+      end
   end
   
 end
